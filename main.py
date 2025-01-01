@@ -39,7 +39,7 @@ def ver_tickets_cliente(cliente_id):
     tickets = cursor.fetchall()
     
     for ticket in tickets:
-        print(f"ID Ticket: {ticket[0]} - Fecha: {ticket[2]} - Descripción: {ticket[3]} - Estatus: {ticket[4]}")
+        print(f"ID Ticket: {ticket[0]} \n \n - Fecha: {ticket[2]} \n \n - Descripción: {ticket[3]} \n \n - Estatus: {ticket[4]}")
     
     conn.close()
 
@@ -63,7 +63,7 @@ def ver_clientes():
     clientes = cursor.fetchall()
     
     for cliente in clientes:
-        print(f"ID Cliente: {cliente[0]} - Nombre: {cliente[1]} - Número de Contacto: {cliente[2]}")
+        print(f"ID Cliente: {cliente[0]} \n \n - Nombre: {cliente[1]} \n \n - Número de Contacto: {cliente[2]}")
     
     conn.close()
 
