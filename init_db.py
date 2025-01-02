@@ -50,3 +50,25 @@ class SistemaReparaciones:
         cursor = self.conn.cursor()
         cursor.execute("SELECT * FROM clientes")
         return cursor.fetchall()
+
+    def buscar_clientes(self, criterio, valor):
+        cursor = self.conn.cursor()
+        query = f"SELECT * FROM clientes WHERE {criterio} LIKE ?"
+        cursor.execute(query, (f"%{valor}%",))
+        return cursor.fetchall()
+
+    def buscar_tickets(self, criterio, valor):
+        cursor = self.conn.cursor()
+        query = f"SELECT * FROM tickets WHERE {criterio} LIKE ?"
+        cursor.execute(query, (f"%{valor}%",))
+        return cursor.fetchall()
+    
+    def generar_reporte(self):
+        cursor = self.conn.cursor()
+        query = "SELECT * FROM tickets"
+        cursor.execute(query)
+        tickets = cursor.fetchall()
+        reporte = "Reporte de Tickets:\n"
+        for ticket in tickets:
+            reporte += f"ID Ticket: {ticket[0]}, Cliente ID: {ticket[1]}, Fecha: {ticket[2]}, Descripción: {ticket[3]}, Estatus: {ticket[4]}\n"
+        return reporte

@@ -25,6 +25,9 @@ class InterfazGrafica:
         ttk.Button(frame, text="Ver Tickets de Cliente", command=self.ver_tickets_cliente).pack(fill=tk.X, pady=10)
         ttk.Button(frame, text="Cambiar Estatus de Ticket", command=self.cambiar_estatus_ticket).pack(fill=tk.X, pady=10)
         ttk.Button(frame, text="Ver Clientes", command=self.ver_clientes).pack(fill=tk.X, pady=10)
+        ttk.Button(frame, text="Buscar Cliente", command=self.buscar_cliente).pack(fill=tk.X, pady=10)
+        ttk.Button(frame, text="Buscar Ticket", command=self.buscar_ticket).pack(fill=tk.X, pady=10)
+        ttk.Button(frame, text="Generar Reporte", command=self.generar_reporte).pack(fill=tk.X, pady=10)
         ttk.Button(frame, text="Salir", command=self.root.quit).pack(fill=tk.X, pady=10)
 
     def registrar_cliente(self):
@@ -133,6 +136,71 @@ class InterfazGrafica:
         clientes = self.sistema.ver_clientes()
         for cliente in clientes:
             tk.Label(container, text=f"ID Cliente: {cliente[0]}, Nombre: {cliente[1]}, Número de Contacto: {cliente[2]}", font=("Helvetica", 12), anchor="w").pack(pady=2, fill=tk.X)
+
+    def buscar_cliente(self):
+        top = tk.Toplevel(self.root)
+        top.title("Buscar Cliente")
+        top.geometry("400x300")
+
+        container = tk.Frame(top, padx=20, pady=20)
+        container.pack(fill=tk.BOTH, expand=True)
+
+        criterios = ["nombre", "numero_contacto"]
+        tk.Label(container, text="Buscar por:", font=("Helvetica", 14)).pack(padx=10, pady=5)
+        criterio_var = tk.StringVar(value=criterios[0])
+        ttk.Combobox(container, textvariable=criterio_var, values=criterios, font=("Helvetica", 14)).pack(padx=10, pady=5, fill=tk.X)
+
+        tk.Label(container, text="Valor:", font=("Helvetica", 14)).pack(padx=10, pady=5)
+        valor_entry = ttk.Entry(container, font=("Helvetica", 14))
+        valor_entry.pack(padx=10, pady=5, fill=tk.X)
+
+        def buscar():
+            criterio = criterio_var.get()
+            valor = valor_entry.get()
+            clientes = self.sistema.buscar_clientes(criterio, valor)
+            for cliente in clientes:
+                tk.Label(container, text=f"ID Cliente: {cliente[0]}, Nombre: {cliente[1]}, Número de Contacto: {cliente[2]}", font=("Helvetica", 12), anchor="w").pack(pady=2, fill=tk.X)
+
+        ttk.Button(container, text="Buscar", command=buscar).pack(pady=20)
+
+    def buscar_ticket(self):
+        top = tk.Toplevel(self.root)
+        top.title("Buscar Ticket")
+        top.geometry("400x300")
+
+        container = tk.Frame(top, padx=20, pady=20)
+        container.pack(fill=tk.BOTH, expand=True)
+
+        criterios = ["descripcion", "estatus"]
+        tk.Label(container, text="Buscar por:", font=("Helvetica", 14)).pack(padx=10, pady=5)
+        criterio_var = tk.StringVar(value=criterios[0])
+        ttk.Combobox(container, textvariable=criterio_var, values=criterios, font=("Helvetica", 14)).pack(padx=10, pady=5, fill=tk.X)
+
+        tk.Label(container, text="Valor:", font=("Helvetica", 14)).pack(padx=10, pady=5)
+        valor_entry = ttk.Entry(container, font=("Helvetica", 14))
+        valor_entry.pack(padx=10, pady=5, fill=tk.X)
+
+        def buscar():
+            criterio = criterio_var.get()
+            valor = valor_entry.get()
+            tickets = self.sistema.buscar_tickets(criterio, valor)
+            for ticket in tickets:
+                tk.Label(container, text=f"ID Ticket: {ticket[0]}, Cliente ID: {ticket[1]}, Fecha: {ticket[2]}, Descripción: {ticket[3]}, Estatus: {ticket[4]}", font=("Helvetica", 12), anchor="w").pack(pady=2, fill=tk.X)
+
+        ttk.Button(container, text="Buscar", command=buscar).pack(pady=20)
+
+    def generar_reporte(self):
+        reporte = self.sistema.generar_reporte()
+        top = tk.Toplevel(self.root)
+        top.title("Reporte de Tickets")
+        top.geometry("600x400")
+
+        container = tk.Frame(top, padx=20, pady=20)
+        container.pack(fill=tk.BOTH, expand=True)
+
+        texto_reporte = tk.Text(container, font=("Helvetica", 12))
+        texto_reporte.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
+        texto_reporte.insert(tk.END, reporte)
 
 if __name__ == "__main__":
     sistema = SistemaReparaciones()
