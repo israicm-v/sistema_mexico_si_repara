@@ -37,7 +37,8 @@ class InterfazGrafica:  # Interfaz grafica principal
         ##funcionalidad propuesta para una version futura
         #ttk.Button(frame, text="Ventas", command=self,crear_menu_ventas).pack(fill=tk.X, pady=10)
     
-    #Esta función creara el menú para los clientes 
+    #Esta función creara el menú para los clientes, con 4 botones
+
     def crear_menu_cliente(self): 
         for widget in self.root.winfo_children(): 
             widget.destroy()
@@ -47,7 +48,8 @@ class InterfazGrafica:  # Interfaz grafica principal
         ttk.Button(frame, text="Registros", command=self.crear_menu_registros).pack(fill=tk.X, pady=10) 
         ttk.Button(frame, text="Búsqueda y Reportes", command=self.crear_menu_busqueda_reportes).pack(fill=tk.X, pady=10) 
         ttk.Button(frame, text="Regresar" , command=self.crear_menu_principal).pack(fill=tk.X,pady=10)
-
+   
+    #Esta función creara el menu para los tickets, con 4 botones
     def crear_menu_tickets(self): 
         for widget in self.root.winfo_children():
             widget.destroy() 
@@ -91,7 +93,7 @@ class InterfazGrafica:  # Interfaz grafica principal
     def registrar_cliente(self):
         top = tk.Toplevel(self.root)
         top.title("Registrar Cliente")
-        top.geometry("400x300")
+        top.geometry("500x500")
 
         container = tk.Frame(top, padx=20, pady=20)
         container.pack(fill=tk.BOTH, expand=True)
@@ -116,7 +118,7 @@ class InterfazGrafica:  # Interfaz grafica principal
     def crear_ticket(self):
         top = tk.Toplevel(self.root)
         top.title("Crear Ticket")
-        top.geometry("400x300")
+        top.geometry("500x500")
 
         container = tk.Frame(top, padx=20, pady=20)
         container.pack(fill=tk.BOTH, expand=True)
@@ -141,7 +143,7 @@ class InterfazGrafica:  # Interfaz grafica principal
     def ver_tickets_cliente(self):
         top = tk.Toplevel(self.root)
         top.title("Ver Tickets de Cliente")
-        top.geometry("500x400")
+        top.geometry("500x500")
 
         container = tk.Frame(top, padx=20, pady=20)
         container.pack(fill=tk.BOTH, expand=True)
@@ -161,7 +163,7 @@ class InterfazGrafica:  # Interfaz grafica principal
     def cambiar_estatus_ticket(self):
         top = tk.Toplevel(self.root)
         top.title("Cambiar Estatus de Ticket")
-        top.geometry("400x300")
+        top.geometry("500x500")
 
         container = tk.Frame(top, padx=20, pady=20)
         container.pack(fill=tk.BOTH, expand=True)
@@ -186,7 +188,7 @@ class InterfazGrafica:  # Interfaz grafica principal
     def ver_clientes(self):
         top = tk.Toplevel(self.root)
         top.title("Ver Clientes")
-        top.geometry("500x400")
+        top.geometry("500x500")
 
         container = tk.Frame(top, padx=20, pady=20)
         container.pack(fill=tk.BOTH, expand=True)
@@ -198,7 +200,7 @@ class InterfazGrafica:  # Interfaz grafica principal
     def buscar_cliente(self):
         top = tk.Toplevel(self.root)
         top.title("Buscar Cliente")
-        top.geometry("400x300")
+        top.geometry("500x500")
 
         container = tk.Frame(top, padx=20, pady=20)
         container.pack(fill=tk.BOTH, expand=True)
@@ -224,7 +226,7 @@ class InterfazGrafica:  # Interfaz grafica principal
     def buscar_ticket(self):
         top = tk.Toplevel(self.root)
         top.title("Buscar Ticket")
-        top.geometry("400x300")
+        top.geometry("500x500")
 
         container = tk.Frame(top, padx=20, pady=20)
         container.pack(fill=tk.BOTH, expand=True)
@@ -263,7 +265,7 @@ class InterfazGrafica:  # Interfaz grafica principal
     def registrar_producto(self):
         top = tk.Toplevel(self.root)
         top.title("Registrar Producto")
-        top.geometry("400x300")
+        top.geometry("500x500")
 
         container = tk.Frame(top, padx=20, pady=20)
         container.pack(fill=tk.BOTH, expand=True)
@@ -293,7 +295,7 @@ class InterfazGrafica:  # Interfaz grafica principal
     def ver_inventario(self):
         top = tk.Toplevel(self.root)
         top.title("Inventario")
-        top.geometry("500x400")
+        top.geometry("500x500")
 
         container = tk.Frame(top, padx=20, pady=20)
         container.pack(fill=tk.BOTH, expand=True)
@@ -305,7 +307,7 @@ class InterfazGrafica:  # Interfaz grafica principal
     def buscar_producto(self):
         top = tk.Toplevel(self.root)
         top.title("Buscar Producto")
-        top.geometry("400x300")
+        top.geometry("500x500")
 
         container = tk.Frame(top, padx=20, pady=20)
         container.pack(fill=tk.BOTH, expand=True)
